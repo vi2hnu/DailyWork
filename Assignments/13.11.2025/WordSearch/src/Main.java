@@ -17,6 +17,18 @@ public class Main {
         catch(FileNotFoundException ex){
             ex.printStackTrace();
         }
+        /*
+        String[] words = lines.toString().split("\\W+");
+        int count = 0;
+
+        for (String word : words) {
+            if (word.equalsIgnoreCase("India")) {
+                count++;
+            }
+        }
+
+        System.out.println(count);
+         */
         List<String> linesArray = List.of(lines.toString().split("\\W+"));
         long numberOfIndia = linesArray.stream()
                 .filter(word->word.equalsIgnoreCase("India"))
