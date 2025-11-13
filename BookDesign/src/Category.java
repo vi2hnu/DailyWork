@@ -1,0 +1,3 @@
+public enum Category {
+    FICTION,NONFICTION,HORROR,FINANCE,AUTOBIOGRAPHY
+}
