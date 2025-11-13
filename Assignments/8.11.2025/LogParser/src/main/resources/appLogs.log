@@ -1,0 +1,46 @@
+[2025-11-07 22:00:00] [INFO] app.Main - Application starting...
+[2025-11-07 22:00:01] [DEBUG] app.ConfigLoader - Loading configuration file: config.yaml
+[2025-11-07 22:00:01] [INFO] app.ConfigLoader - Configuration loaded successfully
+[2025-11-07 22:00:02] [INFO] app.Database - Initializing database connection
+[2025-11-07 22:00:02] [DEBUG] app.Database - Using JDBC URL: jdbc:mysql://localhost:3306/appdb
+[2025-11-07 22:00:03] [INFO] app.Database - Connection established
+[2025-11-07 22:00:03] [INFO] app.Server - Starting HTTP server on port 8080
+[2025-11-07 22:00:04] [INFO] app.Server - Server started successfully
+[2025-11-07 22:00:06] [DEBUG] app.Metrics - Initial metrics snapshot collected
+[2025-11-07 22:00:07] [INFO] app.AuthService - Received login request for user admin
+[2025-11-07 22:00:07] [DEBUG] app.AuthService - Validating credentials for admin
+[2025-11-07 22:00:08] [INFO] app.AuthService - User admin successfully logged in
+[2025-11-07 22:00:09] [INFO] app.ApiClient - Sending request to external service: GET /users
+[2025-11-07 22:00:09] [DEBUG] app.ApiClient - Request headers: {Accept=application/json}
+[2025-11-07 22:00:10] [INFO] app.ApiClient - Received response with code 200
+[2025-11-07 22:00:11] [WARN] app.CacheManager - Cache size threshold reached, clearing old entries
+[2025-11-07 22:00:12] [DEBUG] app.CacheManager - Evicted 20 objects from cache
+[2025-11-07 22:00:13] [ERROR] app.ReportService - Failed to generate monthly report: Missing data column
+[2025-11-07 22:00:15] [INFO] app.ReportService - Retrying report generation
+[2025-11-07 22:00:16] [INFO] app.ReportService - Report successfully generated
+[2025-11-07 22:00:18] [INFO] app.EmailService - Sending report email to user@example.com
+[2025-11-07 22:00:19] [DEBUG] app.EmailService - SMTP connection established
+[2025-11-07 22:00:19] [INFO] app.EmailService - Email sent successfully
+[2025-11-07 22:00:21] [INFO] app.Monitor - CPU usage: 43%, Memory usage: 68%
+[2025-11-07 22:00:23] [WARN] app.Monitor - Memory usage high: 82%
+[2025-11-07 22:00:25] [INFO] app.Monitor - Triggering garbage collection
+[2025-11-07 22:00:26] [INFO] app.Database - Executing cleanup queries
+[2025-11-07 22:00:27] [ERROR] app.Database - SQL Exception: Deadlock detected
+[2025-11-07 22:00:28] [WARN] app.Database - Retrying failed transaction
+[2025-11-07 22:00:29] [INFO] app.Database - Transaction committed successfully
+[2025-11-07 22:00:30] [DEBUG] app.ThreadPool - Active threads: 5
+[2025-11-07 22:00:31] [INFO] app.UserService - Created new user: John Doe
+[2025-11-07 22:00:33] [INFO] app.UserService - Updated user profile: Jane Smith
+[2025-11-07 22:00:34] [ERROR] app.UserService - Failed to delete user: ID not found
+[2025-11-07 22:00:36] [DEBUG] app.UserService - Current user count: 142
+[2025-11-07 22:00:38] [INFO] app.BackupService - Starting scheduled backup
+[2025-11-07 22:00:39] [DEBUG] app.BackupService - Writing 1.2GB of data
+[2025-11-07 22:00:41] [INFO] app.BackupService - Backup completed successfully
+[2025-11-07 22:00:43] [INFO] app.Scheduler - Next backup scheduled for 03:00 AM
+[2025-11-07 22:00:45] [INFO] app.Security - Running periodic audit
+[2025-11-07 22:00:46] [WARN] app.Security - Weak password detected for user guest
+[2025-11-07 22:00:47] [INFO] app.Security - Enforcing password reset
+[2025-11-07 22:00:49] [INFO] app.Server - Received shutdown signal
+[2025-11-07 22:00:50] [INFO] app.Server - Stopping all threads
+[2025-11-07 22:00:51] [DEBUG] app.Server - Waiting for 3 active connections to close
+[2025-11-07 22:00:53] [INFO] app.Main - Application stopped

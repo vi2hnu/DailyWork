@@ -1,0 +1,13 @@
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
+import test.Main;
+
+public class AdditionTest {
+    
+    @Test
+    public void testAdd() {
+        int result = Main.add(2, 3);
+        assertEquals(5, result);
+    }
+}   

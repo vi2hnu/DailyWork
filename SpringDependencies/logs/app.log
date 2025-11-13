@@ -1,0 +1,5 @@
+[2025-11-07 21:59:35] [INFO] test.Main - This is an info message
+[2025-11-07 21:59:35] [ERROR] test.Main - This is an error message
+[2025-11-07 22:00:23] [INFO] test.Main - This is an info message
+[2025-11-07 22:00:23] [ERROR] test.Main - This is an error message
+[2025-11-07 22:00:23] [WARN] test.Main - This is a warning

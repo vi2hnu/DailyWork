@@ -1,0 +1,36 @@
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
+
+import test.FundTransferService;
+import test.AccountService;
+
+public class AdditionTest {
+	private final AccountService a = new AccountService("1234567890",100);
+    private final FundTransferService FundTransferService = new FundTransferService(a);
+
+    @Test
+    public void testLessThanZero() {
+        assertEquals("FAILURE: Invalid amount", FundTransferService.transfer("A1", "A2", -100));
+    }
+
+    @Test
+    public void testSameAccount() {
+        assertEquals("FAILURE: Source and destination cannot be same", FundTransferService.transfer("A1", "A1", 100));
+    }
+
+    @Test
+    public void testInsufficientFunds() {
+        assertEquals("FAILURE: Insufficient funds", FundTransferService.transfer("A1", "A2", 1000));
+    }
+
+    @Test
+    public void testDestinationAccountNotFound() {
+        assertEquals("FAILURE: Destination account not found", FundTransferService.transfer("A1", "-", 100));
+    }
+
+    @Test
+    public void testSuccessfulTransfer() {
+        assertEquals("SUCCESS: Transfer completed", FundTransferService.transfer("A1", "0987654321", 100));
+    }
+}   
+

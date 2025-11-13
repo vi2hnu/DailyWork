@@ -1,0 +1,7 @@
+organization=vi2hnu
+projectKey=vi2hnu_MavenTest
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.76401
+dashboardUrl=https://sonarcloud.io/dashboard?id=vi2hnu_MavenTest
+ceTaskId=AZpjPUlIde2smo2_1Mll
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZpjPUlIde2smo2_1Mll
