@@ -11,6 +11,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    
 	@NotBlank
 	public String house;
 	

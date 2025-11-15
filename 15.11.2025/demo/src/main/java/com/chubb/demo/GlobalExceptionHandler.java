@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 	
-	@ExceptionHandler(exception = Exception.class)
+	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public Map<String,String> handlerException(MethodArgumentNotValidException exception) {
 		Map<String,String> map = new HashMap<>();
 		List<ObjectError> allErrors = exception.getBindingResult().getAllErrors();
@@ -22,6 +22,13 @@ public class GlobalExceptionHandler {
 			String message = error.getDefaultMessage();
 			map.put(feildName, message);
 		});
+		return map;
+	}
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+	public Map<String, String> handleIllegalArgumentException(IllegalArgumentException exception) {
+		Map<String, String> map = new HashMap<>();
+		map.put("error", exception.getMessage());
 		return map;
 	}
 }
