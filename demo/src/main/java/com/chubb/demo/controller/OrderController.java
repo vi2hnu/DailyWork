@@ -1,6 +1,6 @@
 package com.chubb.demo.controller;
 
-import com.chubb.demo.DTO.Order;
+import com.chubb.demo.DTO.Orders;
 import com.chubb.demo.service.OrderService;
 
 import jakarta.validation.Valid;
@@ -26,9 +26,9 @@ public class OrderController {
 	}
 	
 	@PostMapping("/save")
-	Order putOrder(@Valid @RequestBody Order order) {
+    Orders putOrder(@Valid @RequestBody Orders orders) {
 		log.debug("request received");
-		service.saveOrder(order);
-		return order;
+		service.saveOrder(orders);
+		return orders;
 	}
 }

@@ -1,10 +1,17 @@
 package com.chubb.demo.DTO;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public class Order {
+@Entity
+public class Orders {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    int id;
+
 	@NotBlank
     private String item;
 	
@@ -13,12 +20,15 @@ public class Order {
     
     @Min(value = 1)
     private int quantity;
-    
+
     @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
     private Address address;
     
 	public Address getAddress() {
-		return address;
+
+        return address;
 	}
 	public void setAddress(Address address) {
 		this.address = address;
