@@ -1,5 +1,7 @@
-package org.example.webflux;
+package org.example.webflux.service;
 
+import org.example.webflux.model.Tutorial;
+import org.example.webflux.repository.TutorialRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

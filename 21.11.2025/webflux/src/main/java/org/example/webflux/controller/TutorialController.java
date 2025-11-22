@@ -1,5 +1,7 @@
-package org.example.webflux;
+package org.example.webflux.controller;
 
+import org.example.webflux.service.TutorialService;
+import org.example.webflux.model.Tutorial;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;

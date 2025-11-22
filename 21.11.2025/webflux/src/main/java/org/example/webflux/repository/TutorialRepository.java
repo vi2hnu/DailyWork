@@ -1,6 +1,7 @@
-package org.example.webflux;
+package org.example.webflux.repository;
 
 
+import org.example.webflux.model.Tutorial;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
 

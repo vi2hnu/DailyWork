@@ -1,4 +1,4 @@
-package org.example.webflux;
+package org.example.webflux.model;
 
 import lombok.Getter;
 import lombok.Setter;
