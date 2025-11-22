@@ -10,4 +10,5 @@ public interface StudentApiInterface {
     void deleteUrlById(String id);
     Student updateStudent(String id, Student student);
     Student createStudent(Student student);
+    Student addStudent(Student student);
 }

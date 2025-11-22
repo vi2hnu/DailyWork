@@ -45,4 +45,9 @@ public class StudentServiceImpl implements StudentApiInterface {
     public Student createStudent(Student student) {
         return studentRepository.save(student);
     }
+
+    @Override
+    public Student addStudent(Student student) {
+        return studentRepository.save(student);
+    }
 }
