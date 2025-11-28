@@ -41,4 +41,12 @@ public class ScheduleService implements ScheduleInterface {
                 .forEach(seat ->bookedSeatsRepository.save(new BookedSeats(schedule,seat)));
         return true;
     }
+
+    @Override
+    public void deleteSeats(Long scheduleId, SeatsDTO seatsDTO) {
+        seatsDTO.seats().stream()
+                .forEach(seat -> {
+                    bookedSeatsRepository.deleteBySchedule_IdAndSeatPos(scheduleId,seat);
+                });
+    }
 }

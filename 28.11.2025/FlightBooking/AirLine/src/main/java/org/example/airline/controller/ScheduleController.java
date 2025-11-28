@@ -30,4 +30,10 @@ public class ScheduleController {
     public boolean reserveSeats(@PathVariable Long id, @RequestBody SeatsDTO seatsDTO) {
         return scheduleService.reserveSeats(id, seatsDTO);
     }
+
+
+    @DeleteMapping("/api/delete/seats/{id}")
+    void deleteSeats(@PathVariable("id") Long id, @RequestBody SeatsDTO seatsDTO) {
+
+    }
 }
