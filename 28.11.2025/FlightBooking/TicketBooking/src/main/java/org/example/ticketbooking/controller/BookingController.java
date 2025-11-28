@@ -1,0 +1,47 @@
+package org.example.ticketbooking.controller;
+
+import java.util.List;
+
+import jakarta.validation.Valid;
+import org.example.ticketbooking.DTO.TicketBookingDTO;
+import org.example.ticketbooking.model.entity.Ticket;
+import org.example.ticketbooking.service.TicketBookingInterface;
+import org.example.ticketbooking.service.TicketDetailsInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/flight/booking/")
+public class BookingController {
+
+    private final TicketBookingInterface ticketBookingInterface;
+    private final TicketDetailsInterface ticketDetailsInterface;
+
+    @Autowired
+    public BookingController(TicketBookingInterface ticketBookingInterface, TicketDetailsInterface ticketDetailsInterface) {
+        this.ticketBookingInterface = ticketBookingInterface;
+        this.ticketDetailsInterface = ticketDetailsInterface;
+    }
+
+    @PostMapping("{flightId}")
+    public Ticket bookFlight(@PathVariable Long flightId, @Valid @RequestBody TicketBookingDTO ticketBookingDTO){
+        return ticketBookingInterface.getTicket(
+                new TicketBookingDTO(
+                        ticketBookingDTO.user(),
+                        ticketBookingDTO.scheduleId(),
+                        ticketBookingDTO.returnTripId(),
+                        ticketBookingDTO.passengers()
+                )
+        );
+    }
+
+    @GetMapping("history/{emailId:.+}")
+    public List<Ticket> findHistoryByEmail(@PathVariable String emailId) {
+        return ticketDetailsInterface.findHistoryByEmail(emailId);
+    }
+
+    @DeleteMapping("cancel/{pnr}")
+    public Ticket cancelTicket(@PathVariable String pnr) {
+        return ticketDetailsInterface.cancelTicket(pnr);
+    }
+}
