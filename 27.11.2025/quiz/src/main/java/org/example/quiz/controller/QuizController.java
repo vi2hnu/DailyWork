@@ -26,17 +26,17 @@ public class QuizController {
     QuizService quizService;
 
     @PostMapping("create")
-    public ResponseEntity<Quiz> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title){
+    public ResponseEntity<String> createQuiz(@RequestParam String category, @RequestParam int numQ, @RequestParam String title){
         return quizService.createQuiz(category,numQ,title);
     }
 
     @GetMapping("get/{quizId}")
     public ResponseEntity<List<QuestionWrapper>> createQuiz(@PathVariable String quizId){
-        return quizService.getQuiz(quizId);
+        return quizService.getQuizQuestions(quizId);
     }
 
     @PostMapping("submit/{quizId}")
     public ResponseEntity<Integer> submitQuiz(@PathVariable String quizId,@RequestBody List<Response> responses){
-        return quizService.submitQuiz(quizId,responses);
+        return quizService.calculateResult(quizId,responses);
     }
 }
