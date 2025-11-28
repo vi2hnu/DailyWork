@@ -1,5 +1,6 @@
 package org.example.airline.service.implementation;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.airline.DTO.ScheduleDTO;
 import org.example.airline.DTO.SeatsDTO;
 import org.example.airline.model.entity.BookedSeats;
@@ -9,6 +10,7 @@ import org.example.airline.repository.ScheduleRepository;
 import org.example.airline.service.ScheduleInterface;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class ScheduleService implements ScheduleInterface {
 
@@ -28,6 +30,7 @@ public class ScheduleService implements ScheduleInterface {
 
     @Override
     public boolean checkSeats(Long scheduleId, SeatsDTO seatsDTO) {
+        log.info("Seats at service {}", seatsDTO);
         return seatsDTO.seats().stream()
                 .anyMatch(x->
                         bookedSeatsRepository.existsBySchedule_IdAndSeatPos(scheduleId,x)

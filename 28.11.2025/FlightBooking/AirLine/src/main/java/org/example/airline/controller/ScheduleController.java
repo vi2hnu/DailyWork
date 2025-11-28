@@ -1,11 +1,13 @@
 package org.example.airline.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.airline.DTO.ScheduleDTO;
 import org.example.airline.DTO.SeatsDTO;
 import org.example.airline.model.entity.Schedule;
 import org.example.airline.service.ScheduleInterface;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api")
 public class ScheduleController {
@@ -23,6 +25,7 @@ public class ScheduleController {
 
     @PostMapping("/check/seats/{id}")
     public boolean checkSeats(@PathVariable Long id, @RequestBody SeatsDTO seatsDTO) {
+        log.info("seats at controller {}", seatsDTO);
         return scheduleService.checkSeats(id, seatsDTO);
     }
 

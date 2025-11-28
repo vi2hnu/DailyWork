@@ -1,6 +1,7 @@
 package org.example.ticketbooking.service.implmentation;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.ticketbooking.DTO.PassengerDTO;
 import org.example.ticketbooking.DTO.ScheduleDTO;
 import org.example.ticketbooking.DTO.SeatsDTO;
 import org.example.ticketbooking.DTO.TicketBookingDTO;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -41,10 +43,11 @@ public class TicketBookingService implements TicketBookingInterface {
             returnTrip = airLineClient.getSchedule(dto.returnTripId());
         }
 
-        SeatsDTO seatsDTO = new SeatsDTO(
-                dto.passengers().stream().map(p -> p.seatPos()).toList()
-        );
-
+        List<String> seats = dto.passengers().stream()
+                .map(PassengerDTO::seatPos)
+                .toList();
+        SeatsDTO seatsDTO = new SeatsDTO(seats);
+        log.info("SeatsDTO: {}", seatsDTO);
         boolean seatConflict = airLineClient.checkSeats(outbound.id(), seatsDTO);
         if (seatConflict) {
             throw new SeatNotAvailableException("Seat already booked");
