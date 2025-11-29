@@ -1,4 +1,5 @@
 package org.example.quiz.service;
+import lombok.extern.slf4j.Slf4j;
 import org.example.quiz.feign.QuizInterface;
 import org.example.quiz.model.QuestionWrapper;
 import org.example.quiz.model.Quiz;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+@Slf4j
 @Service
 public class QuizService {
 
@@ -41,6 +43,7 @@ public class QuizService {
     }
 
     public ResponseEntity<Integer> calculateResult(String id, List<Response> responses) {
+        log.info(responses.toString());
         ResponseEntity<Integer> score = quizInterface.getScore(responses);
         return score;
     }

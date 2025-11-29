@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface QuestionRepository extends MongoRepository<Question, String> {
     List<Question> findByCategory(String category);
-
     @Aggregation(pipeline = {
             "{ '$match': { 'category': ?0 } }",
             "{ '$sample': { 'size': ?1 } }"
