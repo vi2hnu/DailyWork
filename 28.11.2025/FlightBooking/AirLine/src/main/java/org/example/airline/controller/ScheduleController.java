@@ -3,7 +3,6 @@ package org.example.airline.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.example.airline.DTO.ScheduleDTO;
 import org.example.airline.DTO.SeatsDTO;
-import org.example.airline.model.entity.Schedule;
 import org.example.airline.service.ScheduleInterface;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,9 +33,13 @@ public class ScheduleController {
         return scheduleService.reserveSeats(id, seatsDTO);
     }
 
+    @PostMapping("/add/seats/{id}")
+    void addSeats(@PathVariable Long id, @RequestBody int seats) {
+        scheduleService.addSeats(id, seats);
+    }
 
-    @DeleteMapping("/api/delete/seats/{id}")
+    @DeleteMapping("/delete/seats/{id}")
     void deleteSeats(@PathVariable("id") Long id, @RequestBody SeatsDTO seatsDTO) {
-
+        scheduleService.deleteSeats(id,seatsDTO);
     }
 }

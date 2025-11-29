@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+import java.util.stream.Collectors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,9 +42,10 @@ public class QuestionService {
         return new ResponseEntity<>("success",HttpStatus.CREATED);
     }
 
-    public ResponseEntity<List<Integer>> getQuestionsForQuiz(String categoryName, Integer numQuestions) {
-        List<Integer> questions = questionDao.findRandomQuestionsByCategory(categoryName, numQuestions);
-        return new ResponseEntity<>(questions, HttpStatus.OK);
+    public ResponseEntity<List<String>> getQuestionsForQuiz(String categoryName, Integer numQuestions) {
+        List<Question> questions = questionDao.findRandomQuestionsByCategory(categoryName, numQuestions);
+        List<String> questionIds = questions.stream().map(Question::getId).collect(Collectors.toList());
+        return new ResponseEntity<>(questionIds, HttpStatus.OK);
     }
 
     public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(List<Integer> questionIds) {

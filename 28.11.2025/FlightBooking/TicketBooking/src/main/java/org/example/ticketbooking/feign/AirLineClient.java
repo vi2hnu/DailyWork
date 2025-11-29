@@ -21,4 +21,6 @@ public interface AirLineClient {
     @DeleteMapping("/api/delete/seats/{id}")
     void deleteSeats(@PathVariable("id") Long id,@RequestBody SeatsDTO seatsDTO);
 
+    @PostMapping("/api/add/seats/{id}")
+    void addSeats(@PathVariable Long id, @RequestBody int seats);
 }

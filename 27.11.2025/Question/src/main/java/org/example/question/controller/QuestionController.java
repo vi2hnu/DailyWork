@@ -37,13 +37,13 @@ public class QuestionController {
     }
 
     @GetMapping("generate")
-    public ResponseEntity<List<Integer>> getQuestionsForQuiz
+    public ResponseEntity<List<String>> getQuestionsForQuiz
             (@RequestParam String categoryName, @RequestParam Integer numQuestions ){
         return questionService.getQuestionsForQuiz(categoryName, numQuestions);
     }
 
     @PostMapping("getQuestions")
-    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Integer> questionIds){
+    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<String> questionIds){
         System.out.println(environment.getProperty("local.server.port"));
         return questionService.getQuestionsFromId(questionIds);
     }

@@ -2,10 +2,12 @@ package org.example.ticketbooking.service.implmentation;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.transaction.Transactional;
 import org.example.ticketbooking.DTO.ScheduleDTO;
+import org.example.ticketbooking.DTO.SeatsDTO;
 import org.example.ticketbooking.exception.InvalidScheduleTimeException;
 import org.example.ticketbooking.exception.TicketNotFoundException;
 import org.example.ticketbooking.exception.UsersNotFoundException;
@@ -76,12 +78,16 @@ public class TicketDetailsService implements TicketDetailsInterface {
         ticket.setStatus(Status.CANCELED);
         ticketRepository.save(ticket);
 //        schedule.setSeatsAvailable(schedule.getSeatsAvailable() + ticket.getPassengers().size());
+        airLineClient.addSeats(ticket.getScheduleId(),ticket.getPassengers().size());
+        List<String> seats = new ArrayList<>();
         ticket.getPassengers().forEach(passenger -> {
 //            if (passenger.getSeatPosition() != null) {
 //                bookedSeatsRepository.deleteBySchedule_IdAndSeatPos(schedule.getId(), passenger.getSeatPosition());
 //            }
+            seats.add(passenger.getSeatPosition());
             passengerRepository.delete(passenger);
         });
+        airLineClient.deleteSeats(ticket.getScheduleId(),new SeatsDTO(seats));
         return ticket;
     }
 }

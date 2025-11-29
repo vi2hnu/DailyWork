@@ -9,6 +9,7 @@ import org.example.airline.repository.BookedSeatsRepository;
 import org.example.airline.repository.ScheduleRepository;
 import org.example.airline.service.ScheduleInterface;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
@@ -45,11 +46,19 @@ public class ScheduleService implements ScheduleInterface {
         return true;
     }
 
+    @Transactional
     @Override
     public void deleteSeats(Long scheduleId, SeatsDTO seatsDTO) {
         seatsDTO.seats().stream()
                 .forEach(seat -> {
                     bookedSeatsRepository.deleteBySchedule_IdAndSeatPos(scheduleId,seat);
                 });
+    }
+
+    @Override
+    public void addSeats(Long scheduleId, int seats){
+        Schedule schedule = scheduleRepository.findScheduleById(scheduleId);
+        schedule.setSeatsAvailable(seats+schedule.getSeatsAvailable());
+        scheduleRepository.save(schedule);
     }
 }
