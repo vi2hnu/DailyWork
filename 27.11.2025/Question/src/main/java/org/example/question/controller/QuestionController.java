@@ -44,13 +44,11 @@ public class QuestionController {
 
     @PostMapping("getQuestions")
     public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<String> questionIds){
-        System.out.println(environment.getProperty("local.server.port"));
         return questionService.getQuestionsFromId(questionIds);
     }
 
     @PostMapping("getScore")
-    public ResponseEntity<Integer> getScore(@RequestBody List<Response> responses)
-    {
+    public ResponseEntity<Integer> getScore(@RequestBody List<Response> responses) {
         return questionService.getScore(responses);
     }
 

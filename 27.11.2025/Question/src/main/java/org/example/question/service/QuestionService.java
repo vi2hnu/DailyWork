@@ -48,14 +48,12 @@ public class QuestionService {
         return new ResponseEntity<>(questionIds, HttpStatus.OK);
     }
 
-    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(List<Integer> questionIds) {
+    public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(List<String> questionIds) {
         List<QuestionWrapper> wrappers = new ArrayList<>();
         List<Question> questions = new ArrayList<>();
-
-        for(Integer id : questionIds){
-            questions.add(questionDao.findById(String.valueOf(id)).get());
+        for(String id : questionIds){
+            questions.add(questionDao.findById(id).get());
         }
-
         for(Question question : questions){
             QuestionWrapper wrapper = new QuestionWrapper();
             wrapper.setId(question.getId());
@@ -66,7 +64,6 @@ public class QuestionService {
             wrapper.setOption4(question.getOption4());
             wrappers.add(wrapper);
         }
-
         return new ResponseEntity<>(wrappers, HttpStatus.OK);
     }
 
