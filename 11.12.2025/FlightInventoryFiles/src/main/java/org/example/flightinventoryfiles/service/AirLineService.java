@@ -13,7 +13,14 @@ import org.example.flightinventoryfiles.repository.CityRepository;
 import org.example.flightinventoryfiles.repository.FlightRepository;
 import org.example.flightinventoryfiles.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import tools.jackson.core.type.TypeReference;
+import tools.jackson.databind.ObjectMapper;
 
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,6 +38,31 @@ public class AirLineService {
         this.flightRepository = flightRepository;
         this.cityRepository = cityRepository;
     }
+
+    private final Path root = Paths.get("uploads");
+
+    public List<Schedule> parseFile(MultipartFile file) {
+        try {
+            Path filePath = this.root.resolve(file.getOriginalFilename());
+            Files.copy(file.getInputStream(), filePath);
+
+            ObjectMapper mapper = new ObjectMapper();
+
+            List<ScheduleDTO> dtoList = mapper.readValue(
+                    Files.newInputStream(filePath),
+                    new TypeReference<List<ScheduleDTO>>() {}
+            );
+
+            return dtoList.stream()
+                    .map(this::addSchedule)
+                    .toList();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+
 
     public Schedule addSchedule(ScheduleDTO scheduleDTO) {
         Schedule schedule = new Schedule();

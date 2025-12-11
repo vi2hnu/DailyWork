@@ -1,7 +1,7 @@
 package org.example.flightinventoryfiles.dto;
 
 import jakarta.validation.constraints.NotNull;
-import org.example.flightservice.model.entity.Schedule;
+import org.example.flightinventoryfiles.model.Schedule;
 
 import java.io.Serializable;
 import java.time.LocalDate;
