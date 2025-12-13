@@ -1,0 +1,14 @@
+<p>signup page</p>
+<form (ngSubmit)="register()">
+    <label for="username">Username:</label>
+    <input type="text" [(ngModel)] = "registerModel.username" id="username" name="username" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" [(ngModel)] = "registerModel.email" id="email" name="email" required>
+    
+    <label for="password">Password:</label>
+    <input type="password" [(ngModel)] = "registerModel.password" id="password" name="password" required>
+    
+    <button type="submit">Register</button>
+</form>
+<p>Already have an account? <a routerLink="/login">Login here</a></p>
