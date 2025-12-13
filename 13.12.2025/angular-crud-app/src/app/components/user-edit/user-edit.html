@@ -1,0 +1,11 @@
+<p>user-edit works!</p>
+
+<form (ngSubmit)="editUser()">
+  <label>Name:</label>
+  <input name="name" [(ngModel)]="user.name"/>
+
+  <label>Email:</label>
+  <input name="email" [(ngModel)]="user.email" />
+
+  <button type="submit">Save</button>
+</form>
